@@ -1,7 +1,6 @@
-class GeneralStat {
-  constructor(name, value) {
-    this.name = name;
-    this.value = value;
+class GeneralStats {
+  constructor(num_clusters, value) {
+    this.num_clusters = num_clusters;
   };
 }
 
@@ -19,11 +18,7 @@ export default class StatsService{
   };
 
   generalStats() {
-    let general_stats = [
-      new GeneralStat('Foo', 17),
-      new GeneralStat('Bar', 23),
-      new GeneralStat('Baz', 42),
-    ]
+    let general_stats = new GeneralStats(1234);
     return general_stats;
   };
 
