@@ -9,7 +9,7 @@
     "start": "webpack-dev-server --progress --colors --inline --watch --config webpack.dev.js"
   },
   "author": "Kai Blin",
-  "license": "Apache-2",
+  "license": "Apache-2.0",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
