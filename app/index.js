@@ -3,7 +3,7 @@ import uiRouter from 'angular-ui-router';
 import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/bootstrap-theme.min.css';
-import './css/style.css';
+import './css/style.less';
 
 import routes from './routes.js';
 import start from './start';
