@@ -33,5 +33,13 @@
     "angular-ui-router": "^0.4.3",
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/antismash/mibig-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/antismash/mibig-ui/issues"
+  },
+  "homepage": "https://github.com/antismash/mibig-ui#readme"
 }
