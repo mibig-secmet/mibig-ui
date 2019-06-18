@@ -1,0 +1,42 @@
+<div class="pattern-list form-horizontal">
+  <div class="form-group">
+    <label class="col-sm-1 control-label">Search: </label>
+    <div class="col-sm-4">
+      <div class="btn-group">
+        <label class="btn btn-info" ng-model="$ctrl.query.search" uib-btn-radio="'cluster'" ng-click="$ctrl.query.return_type = 'json'">Cluster</label>
+        <label class="btn btn-info" ng-model="$ctrl.query.search" uib-btn-radio="'gene'" ng-click="$ctrl.query.return_type = 'fasta'">Gene</label>
+        <label class="btn btn-info" ng-model="$ctrl.query.search" uib-btn-radio="'domain'" ng-click="$ctrl.query.return_type = 'fastaa'">NRPS/PKS Domain</label>
+      </div>
+    </div>
+    <label class="col-sm-2 col-sm-offset-1 control-label">Return data in format: </label>
+    <div class="col-sm-3">
+      <div class="btn-group">
+        <label ng-if="$ctrl.graphicalPossible()" class="btn btn-info" ng-model="$ctrl.query.return_type" uib-btn-radio="'json'">Graphical</label>
+        <label class="btn btn-info" ng-model="$ctrl.query.return_type" uib-btn-radio="'csv'">CSV</label>
+        <label class="btn btn-info" ng-model="$ctrl.query.return_type" uib-btn-radio="'fasta'">DNA FASTA</label>
+        <label ng-if="$ctrl.query.search != 'cluster'" class="btn btn-info" ng-model="$ctrl.query.return_type" uib-btn-radio="'fastaa'">AA FASTA</label>
+      </div>
+    </div>
+  </div>
+  <as-query-term term="$ctrl.query.terms" categories="$ctrl.categories"></as-query-term>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <button ng-if="$ctrl.showSearch()" class="btn btn-primary btn-block" ng-click="$ctrl.search()" ng-disabled="!$ctrl.isValidSearch()">
+      <i class="fa fa-search"></i> Search
+    </button>
+    <button ng-if="!$ctrl.showSearch() && !$ctrl.bowser.safari" class="btn btn-primary btn-block" ng-click="$ctrl.exportFile()"
+      ng-disabled="!$ctrl.isValidSearch()">
+      <i class="fa fa-download"></i> Download
+    </button>
+    <a ng-if="!$ctrl.showSearch() && $ctrl.bowser.safari" class="btn btn-primary btn-block" ng-href="{{$ctrl.getExportUrl()}}" ng-disabled="!$ctrl.isValidSearch()"
+      download>
+      <i class="fa fa-download"></i> Download
+    </a>
+  </div>
+
+  <div class="col-md-2 col-md-offset-8">
+    <button class="btn btn-default btn-block" ng-click="$ctrl.loadComplexExample()">
+      <i class="fa"></i>Load example search</button>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<form>
+  <div class="form-group">
+    <div class="col-md-8 col-md-offset-1 search-box">
+      <label for="search-string">Enter your search term</label>
+      <input type="text" class="form-control" id="search-string" placeholder="e.g. lantipeptide streptomyces" ng-model="$ctrl.search_string">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-offset-4 col-md-4 search-button">
+      <button class="btn btn-primary btn-block" ng-click="$ctrl.simpleSearch()" ng-disabled="!$ctrl.validSearch()">Search</button>
+    </div>
+    <div class="col-md-offset-2 col-md-2 search-button">
+      <button class="btn btn-default btn-block" ng-click="$ctrl.loadExample()">Load example</button>
+    </div>
+  </div>
+</form>
