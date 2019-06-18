@@ -12,6 +12,29 @@
 @tooltip-border: slategray;
 @tooltip-background: #ddd;
 
+.wide-container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  @media (min-width: 768px){
+    width: 750px;
+  }
+  @media (min-width: 992px){
+    width: 970px;
+  }
+  @media (min-width: 1200px){
+    width: 1170px;
+  }
+  @media (min-width: 1600px){
+    width: 1560px;
+  }
+}
+
+.navbar-mibig {
+  border-bottom: 4px solid @mibig-blue;
+}
+
 .stats-top {
   background-color: @light-gray;
 }
@@ -23,6 +46,36 @@
 .stats-definition-data {
   font-weight: bold;
   float: right;
+}
+
+.spacer{
+  margin: 0.5em;
+}
+
+.search-box {
+  padding-top: 2em;
+}
+
+.search-button {
+  padding-top: 2em;
+}
+
+.pattern-list {
+  margin: 1em 0;
+  padding: 2em 1em;
+  border-radius: 8px;
+  border: 1px dashed @dark-gray;
+}
+
+.query-operation {
+  list-style: none;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  background-color: @light-gray;
+}
+
+.results-header {
+  cursor: pointer;
 }
 
 .footer {

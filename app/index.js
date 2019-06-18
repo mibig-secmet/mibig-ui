@@ -8,5 +8,6 @@ import './css/style.less';
 import routes from './routes.js';
 import start from './start';
 import stats from './stats';
+import query from './query';
 
-angular.module('mibig', [uiRouter, start, stats]).config(routes);
+angular.module('mibig', [uiRouter, start, stats, query]).config(routes);

@@ -1,5 +1,5 @@
 class GeneralStats {
-  constructor(num_clusters, value) {
+  constructor(num_clusters) {
     this.num_clusters = num_clusters;
   };
 }
@@ -15,17 +15,22 @@ class Record {
 export default class StatsService{
   constructor($http){
     this.$http = $http;
+    this.general_stats = new GeneralStats("?");
+    this.records = [];
+
+    $http.get("/api/v1.0/stats").then((response) => {
+      this.general_stats.num_clusters = response.data.num_records;
+      response.data.clusters.forEach((cluster) => {
+        this.records.push(new Record(cluster.type, cluster.count, cluster.description));
+      });
+    });
   };
 
   generalStats() {
-    let general_stats = new GeneralStats(1234);
-    return general_stats;
+    return this.general_stats;
   };
 
   getRecords() {
-    return [
-      new Record('nrps', 17, 'Nonribosomal peptide'),
-      new Record('t1pks', 23, 'Type I polyketide'),
-    ];
+    return this.records;
   }
 }
