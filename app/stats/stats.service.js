@@ -5,10 +5,11 @@ class GeneralStats {
 }
 
 class Record {
-  constructor(type, count, description) {
+  constructor(type, count, description, css_class) {
     this.type = type;
     this.count = count;
     this.description = description;
+    this.css_class = css_class;
   }
 }
 
@@ -21,7 +22,7 @@ export default class StatsService{
     $http.get("/api/v1.0/stats").then((response) => {
       this.general_stats.num_clusters = response.data.num_records;
       response.data.clusters.forEach((cluster) => {
-        this.records.push(new Record(cluster.type, cluster.count, cluster.description));
+        this.records.push(new Record(cluster.type, cluster.count, cluster.description, cluster.css_class));
       });
     });
   };
