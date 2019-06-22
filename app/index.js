@@ -9,5 +9,6 @@ import routes from './routes.js';
 import start from './start';
 import stats from './stats';
 import query from './query';
+import repository from './repository';
 
-angular.module('mibig', [uiRouter, start, stats, query]).config(routes);
+angular.module('mibig', [uiRouter, start, stats, query, repository]).config(routes);

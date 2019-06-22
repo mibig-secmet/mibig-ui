@@ -1,0 +1,23 @@
+<div class="row">
+    <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Accession</th>
+        <th>Completeness</th>
+        <th>Main product</th>
+        <th>Biosynthetic class</th>
+        <th>Organism</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="cluster-list" ng-repeat="entry in $ctrl.entries" ng-click="$ctrl.showEntry(entry)">
+        <td>{{entry.accession}}</td>
+        <td><i class="fa" ng-class="{'fa-circle': !entry.minimal, 'fa-circle-o': entry.minimal}" uib-tooltip="{{entry.minimal ? 'incomplete entry' : 'complete entry'}}"></i></td>
+        <td>{{entry.product}}</td>
+        <td>{{entry.class}}</td>
+        <td>{{entry.organism}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
