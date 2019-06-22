@@ -14,7 +14,7 @@
         <td>{{entry.accession}}</td>
         <td><i class="fa" ng-class="{'fa-circle': !entry.minimal, 'fa-circle-o': entry.minimal}" uib-tooltip="{{entry.minimal ? 'incomplete entry' : 'complete entry'}}"></i></td>
         <td>{{entry.product}}</td>
-        <td>{{entry.class}}</td>
+        <td><span class="class-label" ng-class="entry.css_class">{{entry.class}}</span></td>
         <td>{{entry.organism}}</td>
       </tr>
     </tbody>
