@@ -1,16 +1,25 @@
 class Entry{
   constructor() {
+    this.tags = [];
   };
 
   fromJSON(data) {
     this.accession = data.accession;
     this.minimal = data.minimal;
     this.product = data.product;
-    this.class = data.class;
-    this.css_class = data.css_class;
+    data.classes.forEach((tag) => {
+      this.tags.push(new Tag(tag.name, tag.css_class));
+    });
     this.organism = data.organism;
     // Make chainable
     return this;
+  };
+}
+
+class Tag{
+  constructor(name, css_class) {
+    this.name = name;
+    this.css_class = css_class;
   };
 }
 
@@ -26,16 +35,14 @@ export default class RepositoryService{
         accession: 'BGC0001234',
         minimal: false,
         product: 'demomycin',
-        'class': 'Lipopeptide',
-        css_class: 'nrps',
+        classes: [{name: 'Lipopeptide',  css_class: 'nrps'}, {name: 'Modular type I polyketide', css_class: 'pks'}],
         organism: 'E. xample'
       }),
       new Entry().fromJSON({
         accession: 'BGC0002345',
         minimal: true,
         product: 'lackomicin',
-        'class': 'Type II polyketide',
-        css_class: 'pks',
+        classes: [{name: 'Type II polyketide', css_class: 'pks'}],
         organism: 'E. xample'
       }),
     ];
