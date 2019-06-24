@@ -6,7 +6,7 @@ class Entry{
   fromJSON(data) {
     this.accession = data.accession;
     this.minimal = data.minimal;
-    this.product = data.product;
+    this.product = data.products.join(', ');
     data.classes.forEach((tag) => {
       this.tags.push(new Tag(tag.name, tag.css_class));
     });
@@ -27,25 +27,14 @@ export default class RepositoryService{
   constructor($http, $q){
     this.$http = $http;
     this.$q = $q;
-    this.loading = true;
+    this.entries = [];
 
-    // TODO: Get this from the API
-    this.entries = [
-      new Entry().fromJSON({
-        accession: 'BGC0001234',
-        minimal: false,
-        product: 'demomycin',
-        classes: [{name: 'Lipopeptide',  css_class: 'nrps'}, {name: 'Modular type I polyketide', css_class: 'pks'}],
-        organism: 'E. xample'
-      }),
-      new Entry().fromJSON({
-        accession: 'BGC0002345',
-        minimal: true,
-        product: 'lackomicin',
-        classes: [{name: 'Type II polyketide', css_class: 'pks'}],
-        organism: 'E. xample'
-      }),
-    ];
+    $http.get("/api/v1/repository").then((response) => {
+      console.log(response);
+      response.data.forEach((entry) => {
+        this.entries.push(new Entry().fromJSON(entry))
+      });
+    });
   };
 
   getEntries() {
