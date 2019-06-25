@@ -30,7 +30,6 @@ export default class RepositoryService{
     this.entries = [];
 
     $http.get("/api/v1/repository").then((response) => {
-      console.log(response);
       response.data.forEach((entry) => {
         this.entries.push(new Entry().fromJSON(entry))
       });

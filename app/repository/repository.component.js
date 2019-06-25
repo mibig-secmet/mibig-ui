@@ -1,9 +1,12 @@
-function repositoryCtrl(){
+class RepositoryCtrl {
+  showEntry(entry) {
+    alert('Would show ' + entry.accession);
+  }
 }
 
 module.exports = {
   template: require('./repository-component.html'),
-  controller: repositoryCtrl,
+  controller: RepositoryCtrl,
   bindings: {
     entries: '=',
   }
