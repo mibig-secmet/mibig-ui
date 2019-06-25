@@ -24,9 +24,8 @@ class Tag{
 }
 
 export default class RepositoryService{
-  constructor($http, $q){
+  constructor($http){
     this.$http = $http;
-    this.$q = $q;
     this.entries = [];
 
     $http.get("/api/v1/repository").then((response) => {
@@ -41,3 +40,5 @@ export default class RepositoryService{
   }
 
 }
+
+RepositoryService.$inject = ['$http'];

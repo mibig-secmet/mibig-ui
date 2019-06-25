@@ -35,3 +35,5 @@ export default class StatsService{
     return this.records;
   }
 }
+
+StatsService.$inject = ['$http']
