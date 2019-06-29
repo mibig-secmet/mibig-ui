@@ -18,8 +18,9 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin([PATHS.build]),
     new HtmlWebpackPlugin({
-      title: 'MIBiG: Minimum Information about Biosynthetic Gene clusters',
+      title: 'MIBiG: Minimum Information about a Biosynthetic Gene cluster',
       template: PATHS.app + "/index.html",
+      favicon: PATHS.app + "/favicon.ico",
     }),
   ],
   module: {
