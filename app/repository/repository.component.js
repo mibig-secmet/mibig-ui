@@ -1,6 +1,6 @@
 class RepositoryCtrl {
   showEntry(entry) {
-    alert('Would show ' + entry.accession);
+    window.open('/go/' + entry.accession, '_blank');
   }
 }
 
