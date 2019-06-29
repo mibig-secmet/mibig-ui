@@ -10,5 +10,6 @@ import start from './start';
 import stats from './stats';
 import query from './query';
 import repository from './repository';
+import download from './download';
 
-angular.module('mibig', [uiRouter, start, stats, query, repository]).config(routes);
+angular.module('mibig', [uiRouter, start, stats, query, repository, download]).config(routes);
