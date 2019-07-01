@@ -1,0 +1,69 @@
+<div class="page-header">
+  <h1>Request an MIBiG accession number</h1>
+</div>
+<div ng-if="!$ctrl.done">
+  <div class="row">
+    <p>
+    The first step in submitting MIBiG information on an experimentally
+    characterized biosynthetic gene cluster is to request an MIBiG accession number
+    for it. This will be used to pre-fill information in the submission form. We
+    will contact you once your accession number has been activated.
+    </p>
+
+    <form>
+      <div class="form-group">
+        <label for="name">Your name:</label>
+        <input id="name" type="text" class="form-control" placeholder="Your Name" ng-model="$ctrl.name">
+      </div>
+      <div class="form-group">
+        <label for="email">Your email:</label>
+        <input id="email" type="email" class="form-control" placeholder="you@mailprovider.com" ng-model="$ctrl.email">
+      </div>
+    </form>
+    <p>
+    Please specify the main compound(s) produced by the cluster:
+    </p>
+    <form class="form-horizontal" ng-repeat="compound in $ctrl.compounds">
+      <div class="form-group">
+        <label for="compound-{{$index}}" class="col-md-2 control-label">Compound {{$index + 1}}</label>
+        <div class="col-md-6">
+          <input id="compound-{{$index}}" type="text" class="form-control" ng-model="compound.name">
+        </div>
+      </div>
+    </form>
+    <button class="btn btn-default" ng-click="$ctrl.addCompound()">Add additional compound</button>
+    <div class="spacer"></div>
+    <p>
+    For each locus involved in the biosynthetic pathway, please specify the GenBank accession number(s) and coordinates.
+    No coordinates are needed if the gene cluster spans the entire nucleotide entry (e.g., for <a href="http://www.ncbi.nlm.nih.gov/nuccore/Y16952">this</a> entry).
+    </p>
+    <div ng-repeat="locus in $ctrl.loci">
+      <h4>Locus {{$index + 1}}</h4>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="acc-{{$index}}" class="control-label col-md-2">GenBank accession</label>
+          <div class="col-md-2">
+            <input id="acc-{{$index}}" type="text" class="form-control" ng-model="locus.genbank_accession">
+          </div>
+          <label for="start-{{$index}}" class="control-label col-md-1">Start nt:</label>
+          <div class="col-md-2">
+            <input id="start-{{$index}}" type="number" class="form-control" ng-model="locus.start">
+          </div>
+          <label for="end-{{$index}}" class="control-label col-md-1">End nt:</label>
+          <div class="col-md-2">
+            <input id="end-{{$index}}" type="number" class="form-control" ng-model="locus.end">
+          </div>
+        </div>
+      </form>
+    </div>
+    <button class="btn btn-default" ng-click="$ctrl.addLocus()">Add additional locus</button>
+  </div>
+  <div class="row">
+    <button class="btn btn-primary col-md-4 col-md-offset-4" ng-click="$ctrl.submit()">Submit</button>
+  </div>
+</div>
+<div ng-if="$ctrl.done">
+  <h2>Message sent successfully</h2>
+  <p>We will contact you with a link to proceed further once your MIBiG ID has been registered</p>
+  <p><a href="#">Back to home page</a></p>
+</div>
