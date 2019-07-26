@@ -1,5 +1,5 @@
-<div class="row"><label>Filter: <input ng-model="$ctrl.filterTerm" ng-minlength="3"></label></div>
-<div class="row">
+<div class="row"><label>Filter: <input ng-model="$ctrl.filterTerm" ng-change="$ctrl.resetLimit()"></label></div>
+<div class="row" in-view-container>
     <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="cluster-list" ng-repeat="entry in $ctrl.entries | filter: $ctrl.filterTerm" ng-click="$ctrl.showEntry(entry)">
+      <tr class="cluster-list" ng-repeat="entry in $ctrl.entries | filter: $ctrl.filterTerm | limitTo: $ctrl.limit" in-view="$ctrl.loadMore($last, $inview)" ng-click="$ctrl.showEntry(entry)">
         <td>{{entry.accession}}</td>
         <td><i class="fa" ng-class="{'fa-circle': !entry.minimal, 'fa-circle-o': entry.minimal}" uib-tooltip="{{entry.minimal ? 'incomplete entry' : 'complete entry'}}"></i></td>
         <td>{{entry.product}}</td>
