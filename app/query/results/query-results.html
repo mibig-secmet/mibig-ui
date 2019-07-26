@@ -38,10 +38,6 @@
           Biosynthetic Class
           <i ng-show="$ctrl.orderByField == 'class'" class="fa" ng-class="$ctrl.searchIconClass()"></i>
         </th>
-        <th class="results-header col-md-2" ng-click="$ctrl.changeSortOrder('subclass')">
-          Biosynthetic Subclass
-          <i ng-show="$ctrl.orderByField == 'subclass'" class="fa" ng-class="$ctrl.searchIconClass()"></i>
-        </th>
         <th class="results-header col-md-3" ng-click="$ctrl.changeSortOrder('organism')">
           Organism
           <i ng-show="$ctrl.orderByField == 'organism'" class="fa" ng-class="$ctrl.searchIconClass()"></i>
@@ -52,10 +48,9 @@
       <tr class="cluster-list" ng-repeat="entry in $ctrl.s.results.clusters|orderBy:$ctrl.orderByField:$ctrl.reverseSort"
         ng-click="$ctrl.showCluster(entry)">
         <td>{{entry.accession}}</td>
-        <td>{{entry.completeness}}</td>
+        <td><i class="fa" ng-class="{'fa-circle': !entry.minimal, 'fa-circle-o': entry.minimal}" uib-tooltip="{{entry.minimal ? 'incomplete entry' : 'complete entry'}}"></i></td>
         <td>{{entry.product}}</td>
-        <td>{{entry.class}}</td>
-        <td>{{entry.subclass}}</td>
+        <td><div class="class-label" ng-repeat="tag in entry.tags" ng-class="tag.css_class">{{tag.name}}</div></td>
         <td>{{entry.organism}}</td>
       </tr>
     </tbody>

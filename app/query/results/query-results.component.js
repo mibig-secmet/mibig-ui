@@ -1,34 +1,39 @@
-function queryResultsCtrl(){
-  let vm = this;
+class QueryResultsCtrl {
+  constructor() {
+    this.reverseSort = false;
+    this.orderByField = 'accession';
+  }
 
-  vm.$onInit = () => {
-    vm.s = vm.queryService;
-    vm.results = vm.queryService.resutls;
-  };
+  $onInit() {
+    this.s = this.queryService;
+    this.results = this.queryService.results;
+  }
 
-  vm.reverseSort = false;
-  vm.orderByField = 'accession';
 
-  vm.changeSortOrder = (order_by_field) => {
-    if (vm.orderByField != order_by_field) {
-      vm.orderByField = order_by_field;
+  changeSortOrder(order_by_field) {
+    if (this.orderByField != order_by_field) {
+      this.orderByField = order_by_field;
     } else {
-      vm.reverseSort = !vm.reverseSort;
+      this.reverseSort = !this.reverseSort;
     }
-  };
+  }
 
-  vm.searchIconClass = () => {
-    if (vm.reverseSort) {
+  searchIconClass(){
+    if (this.reverseSort) {
       return 'fa-arrow-down';
     }
     return 'fa-arrow-up';
+  };
+
+  resetSearch() {
+    this.queryService.reset()
   };
 
 };
 
 module.exports = {
   template: require('./query-results.html'),
-  controller: queryResultsCtrl,
+  controller: QueryResultsCtrl,
   bindings: {
     queryService: '<',
   }

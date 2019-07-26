@@ -1,18 +1,20 @@
-function queryCtrl(){
-  let vm = this;
-
-  vm.isPending = () => {
-    return vm.queryService.search_pending;
+class QueryCtrl {
+  constructor(){
   };
 
-  vm.isDone = () => {
-    return vm.queryService.search_done;
+  isPending(){
+    return this.queryService.search_pending;
   };
+
+  isDone(){
+    return this.queryService.search_done;
+  };
+
 };
 
 module.exports = {
   template: require('./query-component.html'),
-  controller: queryCtrl,
+  controller: QueryCtrl,
   bindings: {
     queryService: '<',
   }
