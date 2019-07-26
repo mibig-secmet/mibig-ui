@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>MIBiG Annotation Form - Step 3</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- jQuery  -->
+<script type="text/javascript"
+        src="jquery-1.10.2.min.js"></script>
+<script src="jquery.handsontable.full.js"></script>
+
+<link rel="stylesheet" media="screen" href="jquery.handsontable.full.css">
+<link rel="stylesheet" media="screen" href="samples.css">
+
+<link rel="stylesheet" type="text/css" href="formstyle2.css" />
+</head>
+
+<body>
+
+	<div id="page-wrap">
+
+      <div id="images">
+      <div id="gsclogo">
+      <img src="images/gsc_logo2.png" width="315" height="69" align="left">
+      </div>
+      <div id="mibig_logo">
+      <img src="images/mibig_logo.jpg" width="136" height="66" align="right">
+      </div>
+      </div>
+
+      <div id="form-header">
+
+
+      <div id="form-header-title" style="color:#383838">MIBiG Community Annotation Submission Form - Step 3: NRPS/PKS Module Info</div>
+        <div id="form-header-text">
+          <div id="form-header-listannounce"><br/>
+
+          Please consider the following instructions when filling in the table below:
+          </div>
+          <div id="bullet-list-tables">
+          <ul style="list-style-type: disc;">
+            <li id="bullet">If your gene cluster does not contain PKS/NRPS modules, just click 'Skip this step'.</li>
+            <li id="bullet">All the information items that are preloaded are
+            <i>predictions</i>. Please check them carefully and adjust them to match the
+            true situation as described in the literature and verified by experiments.</li>
+            <li id="bullet">Please make sure you fill out all columns; there is a scroll
+            bar that allows you to move to columns in the table that are placed further to
+            the right.</li>
+            <li id="bullet"><i>Module numbers</i>: Counting starts from 1 at the start of
+            the assembly-line, and includes loading modules (which are numbered '0'). If a
+            module is split across two genes, please re-indicate the same module at each
+            gene, but only with the domains present in that gene. Every module with at
+            least an substrate-selecting domain (A / AT / CAL) is included in the count.
+            If a module is split over two genes, the same number can be re-used for the
+            domain(s) in the second gene. For hybrids, both
+            PKS and NRPS modules are included in the
+            counting. If this PKS/NRPS module is not part of a main assembly-line for producing
+            this compound or if the PKS/NRPS complex is too noncanonical to describe in a linear
+            fashion, please enter 'x'. The same applies for monomodular precursor
+            synthases such as MSAS synthase, which may be encoded within larger
+            multi-modular NRPS/PKS-encoding gene clusters. If there are multiple assembly-lines
+            involved in synthesis of the main product, these can be indicated as 'A1, A2,
+            A3, etc.' and 'B1, B2, B3'. Similarly, if the assembly-line branches at a
+            later stage to make multiple products, the shared part can be called e.g. '1,
+            2, 3' and the split part 'A4, A5' and 'B4, B5'. Up to four parallel
+            assembly-lines are supported (with letters A-D).</li>
+            <li id="bullet"><i>Core domains</i>: Please use standard abbreviations,
+            separated by commas: AT (acyltransferase), KR (ketoreductase), DH
+            (dehydratase), ER (enoylreductase), KS (ketosynthase), T (thiolation), CAL
+            (Co-A ligase), C (condensation), A (adenylation), E (epimerization). Do not
+            include custom modifying domains, but select these in the next column.</li>
+            <li id="bullet"><i>Modifying domains</i>: If multiple types are needed, use
+            the exact same wording as in the drop-down menu for each descriptor, but
+            separate them by commas: e.g., "Methylation, Oxidation".</li>
+            <li id="bullet"><i>KR domain activity / stereochemistry</i>: A-group / B-group
+            according to Caffrey, ChemBioChem 2003.</li>
+            <li id="bullet"><i>AT / CAL / A domain specificity</i>: Enter 'None' if no AT-domain
+            present (e.g., for trans-AT modules) or module is skipped. Enter 'Unknown' if
+            specificity not known. Please use input identical to the auto-completed
+            suggestion whenever possible. If the specificity is promiscuous (multiple),
+            please enter all specificities separated by a forward slash (" / "), e.g.
+            "Alanine / Glycine / Valine".</li>
+            <li id="bullet"><i>Evidence for substrate specificity</i>: Choose 'None' if
+            substrate specificity not known or not applicable. Please select the strongest
+            level of evidence.</li>
+            <li id="bullet"><i>C domain subtype</i>: See Rausch et al. (2007) BMC
+            Evolutionary Biology 7:78. Epimerization domains are not counted as C domains,
+            but as a separate domain type. Epimerized: please tick this box if selected
+            amino acid is epimerized to a D-enantiomer by an epimerization domain or
+            epimerase.</li>
+          </ul>
+          </div>
+        </div>
+      </div>
+      <p>
+        MIBiG accession: <input type="text" id="mibig_acc" name="mibig_acc" value="BGC0000000"><br>
+        <button name="load">Pre-fill information</button>
+
+      </p>
+
+      <div class="handsontable" id="tablediv"  style="width: 1000px; overflow: auto"></div>
+
+      <!-- <p>
+        <button name="dump" data-dump="#example1" title="Prints current data source to Firebug/Chrome Dev Tools">Dump
+          data to console
+        </button>
+      </p> -->
+
+      <p>
+         <button name="submit">Submit NRPS/PKS module info</button>&nbsp; &nbsp; <button name="skip">Skip this step</button>
+      </p>
+
+      </div>
+
+<script type="text/javascript" src="nrpspks_form.js">
+</script>
+
+</body>
+
+</html>

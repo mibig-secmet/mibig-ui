@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>MIBiG Annotation Form - Step 2</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- jQuery  -->
+<script type="text/javascript"
+        src="jquery-1.10.2.min.js"></script>
+<script src="jquery.handsontable.full.js"></script>
+
+<link rel="stylesheet" media="screen" href="jquery.handsontable.full.css">
+<link rel="stylesheet" media="screen" href="samples.css">
+
+<link rel="stylesheet" type="text/css" href="formstyle2.css" />
+</head>
+
+<body>
+
+	<div id="page-wrap">
+
+      <div id="images">
+      <div id="gsclogo">
+      <img src="images/gsc_logo2.png" width="315" height="69" align="left">
+      </div>
+      <div id="mibig_logo">
+      <img src="images/mibig_logo.jpg" width="136" height="66" align="right">
+      </div>
+      </div>
+
+      <div id="form-header">
+
+
+      <div id="form-header-title" style="color:#383838">MIBiG Community Annotation Submission Form - Step 2: Gene Info</div>
+        <div id="form-header-text">
+          <div id="form-header-listannounce"><br/>
+
+          Please consider the following instructions when filling in the table below:
+          </div>
+
+          <div id="bullet-list-tables">
+          <ul style="list-style-type: disc;">
+            <li id="bullet">If you have no tailoring reactions, experimentally verified gene functions, knock-out phenotypes or custom gene names to declare for your cluster, just click 'Skip this step'.</li>
+            <li id="bullet">Please make sure you fill out all columns for which information is available; there is a scroll
+            bar that allows you to move to columns in the table that are placed further to
+            the right.</li>
+            <li id="bullet">If you right-click on one of the cells, you will see a menu that will allow you to add/remove a row to/from the table.</li>
+            <li id="bullet">If information on a gene is not present in the pre-filled
+            information but the gene is annotated in GenBank with a protein ID,
+            start/end coordinates do not have to be provided. In contrast, if a gene is not
+            annotated in GenBank and has no protein ID, start/end coordinates are mandatory.</li>
+            <li id="bullet"><i>Genome/contig accession</i>: nucleotide accession number from one
+            of the INSDC databases (GenBank, EBI-ENA, or DDBJ). E.g., 'CP000850'.</li>
+            <li id="bullet"><i>CDS in annotation</i>: Untick this box if the gene has been missed
+            in the original annotation in GenBank, which can happen, e.g., for a small RiPP precursor-encoding gene.</li>
+            <li id="bullet"><i>Gene ID</i>: Custom gene name. E.g., '<i>eryA</i>'.</li>
+            <li id="bullet"><i>Evidence for function</i>: please select the strongest or most
+            decisive type of evidence. If multiple types are needed, use the exact same
+            wording as in the drop-down menu for each descriptor, but separate them by commas: e.g., "Knock-out,
+            Other in vivo study".</li>
+            <li id="bullet"><i>Publication on this gene</i>: Pubmed ID (PMID) or DOI of a publication that specifically addresses the function of this gene or the protein it encodes, if any. If multiple, separate the PMIDs / DOIs by commas.</li>
+          </ul>
+          </div>
+        </div>
+      </div>
+      <p>
+        MIBiG accession: <input type="text" id="mibig_acc" name="mibig_acc" value="BGC0000000"><br>
+        <button name="load">Pre-fill information</button>
+
+      </p>
+
+      <div class="handsontable" id="example1"  style="width: 1000px; overflow: auto;"></div>
+
+      <!-- <p>
+        <button name="dump" data-dump="#example1" title="Prints current data source to Firebug/Chrome Dev Tools">Dump
+          data to console
+        </button>
+      </p> -->
+
+      <p>
+         <button name="submit">Submit Gene Info</button>&nbsp; &nbsp; <button name="skip">Skip this step</button>
+      </p>
+
+      </div>
+
+<script type="text/javascript" src="genes_form.js">
+</script>
+
+</body>
+
+</html>

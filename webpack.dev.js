@@ -8,6 +8,7 @@ module.exports = merge(common, {
     contentBase: common.output.path,
     proxy: {
       '/api': 'http://localhost:6424'
-    }
+    },
+    writeToDisk: true,
   },
 });

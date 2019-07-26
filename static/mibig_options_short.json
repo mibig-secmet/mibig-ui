@@ -1,0 +1,563 @@
+{
+    "renderForm": true,
+    "toolbarSticky": true,
+    "form": {
+        "toggleSubmitValidState": true,
+        "attributes": {
+            "id": "mibig-form",
+            "method": "post",
+            "action": "/api/v1/bgc-registration"
+        }
+    },
+    "fields": {
+        "version": {
+            "type": "hidden"
+        },
+        "personal": {
+            "fields": {
+                "submitter_name": {
+                    "type": "personalname"
+                }
+            }
+        },
+        "general_params": {
+            "fields": {
+                "biosyn_class": {
+                    "vertical": "true",
+                    "type": "select",
+                    "multiple": true,
+                    "size": 7
+                },
+                "loci": {
+                    "fields": {
+                        "nucl_acc": {
+                            "itemLabel": "Genomic locus",
+                            "toolbarSticky": true,
+                            "fields": {
+                                "item": {
+                                    "fields": {
+                                        "mixs_compliant": {
+                                            "type": "checkbox",
+                                            "rightLabel": "MIxS-compliant"
+                                        },
+                                        "conn_comp_cluster": {
+                                            "type": "select",
+                                            "multiple": true,
+                                            "size": 5
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "compounds": {
+                    "itemLabel": "Compound",
+                    "toolbarSticky": true,
+                    "fields": {
+                        "item": {
+                            "fields": {
+                                "chem_synonyms": {
+                                    "type": "tag"
+                                },
+                                "database_deposited": {
+                                    "type": "checkbox",
+                                    "rightLabel": "Deposited in a chemical database."
+                                },
+                                "databases_deposited": {
+                                    "type": "select",
+                                    "multiple": true,
+                                    "size": 4,
+                                    "dependencies": {
+                                        "database_deposited": true
+                                    }
+                                },
+                                "pubchem_id": {
+                                    "dependencies": {
+                                        "databases_deposited": "PubChem"
+                                    }
+                                },
+                                "chebi_id": {
+                                    "dependencies": {
+                                        "databases_deposited": "chEBI"
+                                    }
+                                },
+                                "chembl_id": {
+                                    "dependencies": {
+                                        "databases_deposited": "chEMBL"
+                                    }
+                                },
+                                "chemspider_id": {
+                                    "dependencies": {
+                                        "databases_deposited": "ChemSpider"
+                                    }
+                                },
+                                "chem_struct": {
+                                    "dependencies": {
+                                        "database_deposited": false
+                                    }
+                                },
+                                "molecular_formula": {
+                                    "dependencies": {
+                                        "database_deposited": false
+                                    }
+                                },
+                                "mol_mass": {
+                                    "dependencies": {
+                                        "database_deposited": false
+                                    }
+                                },
+                                "mass_ion_type": {
+                                    "dependencies": {
+                                        "database_deposited": false
+                                    }
+                                },
+                                "evidence_struct": {
+                                    "type": "select",
+                                    "multiple": true,
+                                    "size": 6
+                                },
+                                "chem_act": {
+                                    "type": "select",
+                                    "multiple": true,
+                                    "size": 10
+                                },
+                                "other_chem_act": {
+                                    "dependencies": {
+                                        "chem_act": "Other"
+                                    }
+                                },
+                                "chem_moieties": {
+                                    "fields": {
+                                        "item": {
+                                            "fields": {
+                                                "other_chem_moiety": {
+                                                    "dependencies": {
+                                                        "chem_moiety": "Other"
+                                                    }
+                                                },
+                                                "moiety_subcluster": {
+                                                    "type": "tag"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "genes": {
+                    "collapsed": true,
+                    "fields": {
+                        "operon": {
+                            "itemLabel": "Operon",
+                            "toolbarSticky": true,
+                            "fields": {
+                                "item": {
+                                    "fields": {
+                                        "operon_genes": {
+                                            "type": "tag"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "NRP": {
+                    "dependencies": {
+                        "biosyn_class": "NRP"
+                    },
+                    "collapsed": true,
+                    "fields": {
+                        "lipid_moiety": {
+                            "dependencies": {
+                                "subclass": ["Ca+-dependent lipopeptide", "Other lipopeptide"]
+                            }
+                        },
+                        "nrps_thioesterase": {
+                            "type": "tag",
+                            "dependencies": {
+                                "nrps_te_type": [
+                                    "Type I",
+                                    "Unknown",
+                                    "None"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "Polyketide": {
+                    "dependencies": {
+                        "biosyn_class": "Polyketide"
+                    },
+                    "collapsed": true,
+                    "fields": {
+                        "starter_unit": {},
+                        "pks_subclass": {
+                            "type": "select",
+                            "multiple": true,
+                            "vertical": "true",
+                            "size": 8
+                        },
+                        "pks_genes": {
+                            "type": "tag",
+                            "dependencies": {
+                                "pks_subclass": [
+                                    "Iterative type I",
+                                    "Enediyne type I",
+                                    "PUFA synthase or related",
+                                    "Type II",
+                                    "Type III",
+                                    "Other"
+                                ]
+                            }
+                        },
+                        "pufa_mod_doms": {
+                            "dependencies": {
+                                "pks_subclass": "PUFA synthase or related"
+                            }
+                        },
+                        "nr_iterations": {
+                            "dependencies": {
+                                "pks_subclass": "Iterative type I"
+                            }
+                        },
+                        "iterative_subtype": {
+                            "dependencies": {
+                                "pks_subclass": "Iterative type I"
+                            }
+                        },
+                        "iter_cycl_type": {
+                            "dependencies": {
+                                "pks_subclass": "Iterative type I"
+                            }
+                        },
+                        "trans_at": {
+                            "type": "tag",
+                            "dependencies": {
+                                "pks_subclass": "Trans-AT type I"
+                            }
+                        },
+                        "ketide_length": {
+                            "dependencies": {
+                                "pks_subclass": [
+                                    "Type II",
+                                    "Type III"
+                                ]
+                            }
+                        },
+                        "cyclases": {
+                            "dependencies": {
+                                "pks_subclass": "Type II"
+                            }
+                        },
+                        "pks_te_type": {
+                            "dependencies": {
+                                "pks_subclass": [
+                                    "Modular type I",
+                                    "Trans-AT type I",
+                                    "Enediyne type I",
+                                    "Iterative type I",
+                                    "PUFA synthase or related"
+                                ]
+                            }
+                        },
+                        "pks_thioesterase": {
+                            "type": "tag",
+                            "dependencies": {
+                                "pks_te_type": [
+                                    "Type II",
+                                    "Other",
+                                    "Both"
+                                ]
+                            }
+                        },
+                        "pks_release_type": {
+                            "dependencies": {
+                                "pks_subclass": [
+                                    "Modular type I",
+                                    "Trans-AT type I",
+                                    "Enediyne type I",
+                                    "Iterative type I",
+                                    "PUFA synthase or related"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "RiPP": {
+                    "dependencies": {
+                        "biosyn_class": "RiPP"
+                    },
+                    "collapsed": true,
+                    "fields": {
+                        "precursor_loci": {
+                            "fields": {
+                                "item": {
+                                    "fields": {
+                                        "gene_id": {
+                                            "type": "tag"
+                                        },
+                                        "peptidase": {
+                                            "type": "tag"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "Terpene": {
+                    "dependencies": {
+                        "biosyn_class": "Terpene"
+                    },
+                    "collapsed": true,
+                    "fields": {
+                        "terpene_synth_cycl": {
+                            "type": "tag"
+                        },
+                        "prenyl_transf": {
+                            "type": "tag"
+                        }
+                    }
+                },
+                "Saccharide": {
+                    "dependencies": {
+                        "biosyn_class": "Saccharide"
+                    },
+                    "collapsed": true,
+                    "fields": {
+                        "gt_genes": {
+                            "toolbarSticky": true,
+                            "fields": {
+                                "item": {
+                                    "fields": {
+                                        "evidence_gt_spec": {
+                                            "dependencies": {
+                                                "gt_specificity": [
+                                                    "2-deoxy-L-fucose",
+                                                    "2-O-methyl-L-rhamnose",
+                                                    "2-thioglucose",
+                                                    "2,3-O-dimethyl-L-rhamnose",
+                                                    "2,3,4-tri-O-methylrhamnose",
+                                                    "2,4-O-dimethyl-L-rhamnose",
+                                                    "2'-N-methyl-D-fucosamine",
+                                                    "3-(5'-methyl-2'-pyrrolylcarbonyl-)4-O-methyl-L-noviose",
+                                                    "3-epi-L-vancosamine",
+                                                    "3-methoxy-D-mannose",
+                                                    "3-N-acetyl-4-O-acetyl-D-ravidosamine",
+                                                    "3-N-acetyl-D-ravidosamine",
+                                                    "3-N,N-dimethyl-D-mycosamine",
+                                                    "3-N,N-dimethyl-L-eremosamine",
+                                                    "3-O-carbamoyl-4-O-methyl-L-noviose",
+                                                    "3-O-carbamoyl-L-noviose",
+                                                    "3-O-methyl-L-olivose/L-oleandrose",
+                                                    "3-O-methyl-rhamnose",
+                                                    "3,4-O-dimethyl-L-rhamnose",
+                                                    "4-deoxy-4-methylthio-a-D-digitoxose ",
+                                                    "4-deoxy-4-thio-D-digitoxose ",
+                                                    "4-N-ethyl-4-amino-3-O-methoxy-2,4,5-trideoxypentose",
+                                                    "4-N,N-dimethylamino-4-deoxy-5-C-methyl-l-rhamnose",
+                                                    "4-O-acetyl-D-ravidosamine",
+                                                    "4-O-acetyl-L-arcanose",
+                                                    "4-O-carbamoyl-D-olivose",
+                                                    "4-O-methyl-L-rhodinose",
+                                                    "4-oxo-L-vancosamine",
+                                                    "4,6-dideoxy-4-hydroxylamino-D-glucose",
+                                                    "6-deoxy-3-C-methyl-L-mannose",
+                                                    "6-methoxy-D-glucose",
+                                                    "Chromose D (4-O-acetyl-beta-D-oliose)",
+                                                    "D-3-N-methyl-4-O-methyl-L-ristosamine",
+                                                    "D-angolosamine",
+                                                    "D-arabinose",
+                                                    "D-chalcose",
+                                                    "D-desosamine",
+                                                    "D-digitalose",
+                                                    "D-digitoxose",
+                                                    "D-forosamine",
+                                                    "D-fucofuranose",
+                                                    "D-fucose",
+                                                    "D-galactose",
+                                                    "D-galacturonic acid",
+                                                    "D-glucosamine",
+                                                    "D-glucose",
+                                                    "D-mannose",
+                                                    "D-mycarose",
+                                                    "D-mycosamine",
+                                                    "D-oliose",
+                                                    "D-olivose ",
+                                                    "D-quinovose",
+                                                    "D-ravidosamine",
+                                                    "D-rhamnose",
+                                                    "Glucuronic acid",
+                                                    "Kedarosamine",
+                                                    "Ketodeoxyoctonic acid",
+                                                    "L-acosamine",
+                                                    "L-actinosamine",
+                                                    "L-aculose",
+                                                    "L-boivinose",
+                                                    "L-cinerulose A",
+                                                    "L-cinerulose B",
+                                                    "L-cladinose",
+                                                    "L-daunosamine ",
+                                                    "L-digitoxose",
+                                                    "L-fucose",
+                                                    "L-megosamine",
+                                                    "L-nogalose",
+                                                    "L-noviose",
+                                                    "L-quinovose",
+                                                    "L-rhamnose",
+                                                    "L-rhamnose",
+                                                    "L-rhodinose",
+                                                    "L-rhodosamine ",
+                                                    "L-ristosamine",
+                                                    "L-vancosamine",
+                                                    "L-vicenisamine",
+                                                    "N-5-acetylneuraminic acid",
+                                                    "N-acetyl-D-galactose",
+                                                    "N-acetyl-D-glucosamine",
+                                                    "N,N-dimethyl-L-pyrrolosamine",
+                                                    "Namenamicin sugar C",
+                                                    "Nogalamine",
+                                                    "O-methyl-L-amicetose",
+                                                    "Olivomose",
+                                                    "Olivomycose (L-chromose B)",
+                                                    "Rednose",
+                                                    "Multiple (promiscuous)",
+                                                    "Other"
+                                                ]
+                                            }
+                                        },
+                                        "other_gt_spec": {
+                                            "dependencies": {
+                                                "gt_specificity": "Other"
+                                            }
+                                        },
+                                        "sugar_subcluster": {
+                                            "dependencies": {
+                                                "gt_specificity": [
+                                                    "2-deoxy-L-fucose",
+                                                    "2-O-methyl-L-rhamnose",
+                                                    "2-thioglucose",
+                                                    "2,3-O-dimethyl-L-rhamnose",
+                                                    "2,3,4-tri-O-methylrhamnose",
+                                                    "2,4-O-dimethyl-L-rhamnose",
+                                                    "2'-N-methyl-D-fucosamine",
+                                                    "3-(5'-methyl-2'-pyrrolylcarbonyl-)4-O-methyl-L-noviose",
+                                                    "3-epi-L-vancosamine",
+                                                    "3-methoxy-D-mannose",
+                                                    "3-N-acetyl-4-O-acetyl-D-ravidosamine",
+                                                    "3-N-acetyl-D-ravidosamine",
+                                                    "3-N,N-dimethyl-D-mycosamine",
+                                                    "3-N,N-dimethyl-L-eremosamine",
+                                                    "3-O-carbamoyl-4-O-methyl-L-noviose",
+                                                    "3-O-carbamoyl-L-noviose",
+                                                    "3-O-methyl-L-olivose/L-oleandrose",
+                                                    "3-O-methyl-rhamnose",
+                                                    "3,4-O-dimethyl-L-rhamnose",
+                                                    "4-deoxy-4-methylthio-a-D-digitoxose ",
+                                                    "4-deoxy-4-thio-D-digitoxose ",
+                                                    "4-N-ethyl-4-amino-3-O-methoxy-2,4,5-trideoxypentose",
+                                                    "4-N,N-dimethylamino-4-deoxy-5-C-methyl-l-rhamnose",
+                                                    "4-O-acetyl-D-ravidosamine",
+                                                    "4-O-acetyl-L-arcanose",
+                                                    "4-O-carbamoyl-D-olivose",
+                                                    "4-O-methyl-L-rhodinose",
+                                                    "4-oxo-L-vancosamine",
+                                                    "4,6-dideoxy-4-hydroxylamino-D-glucose",
+                                                    "6-deoxy-3-C-methyl-L-mannose",
+                                                    "6-methoxy-D-glucose",
+                                                    "Chromose D (4-O-acetyl-beta-D-oliose)",
+                                                    "D-3-N-methyl-4-O-methyl-L-ristosamine",
+                                                    "D-angolosamine",
+                                                    "D-arabinose",
+                                                    "D-chalcose",
+                                                    "D-desosamine",
+                                                    "D-digitalose",
+                                                    "D-digitoxose",
+                                                    "D-forosamine",
+                                                    "D-fucofuranose",
+                                                    "D-fucose",
+                                                    "D-galactose",
+                                                    "D-galacturonic acid",
+                                                    "D-glucosamine",
+                                                    "D-glucose",
+                                                    "D-mannose",
+                                                    "D-mycarose",
+                                                    "D-mycosamine",
+                                                    "D-oliose",
+                                                    "D-olivose ",
+                                                    "D-quinovose",
+                                                    "D-ravidosamine",
+                                                    "D-rhamnose",
+                                                    "Glucuronic acid",
+                                                    "Kedarosamine",
+                                                    "Ketodeoxyoctonic acid",
+                                                    "L-acosamine",
+                                                    "L-actinosamine",
+                                                    "L-aculose",
+                                                    "L-boivinose",
+                                                    "L-cinerulose A",
+                                                    "L-cinerulose B",
+                                                    "L-cladinose",
+                                                    "L-daunosamine ",
+                                                    "L-digitoxose",
+                                                    "L-fucose",
+                                                    "L-megosamine",
+                                                    "L-nogalose",
+                                                    "L-noviose",
+                                                    "L-quinovose",
+                                                    "L-rhamnose",
+                                                    "L-rhamnose",
+                                                    "L-rhodinose",
+                                                    "L-rhodosamine ",
+                                                    "L-ristosamine",
+                                                    "L-vancosamine",
+                                                    "L-vicenisamine",
+                                                    "N-5-acetylneuraminic acid",
+                                                    "N-acetyl-D-galactose",
+                                                    "N-acetyl-D-glucosamine",
+                                                    "N,N-dimethyl-L-pyrrolosamine",
+                                                    "Namenamicin sugar C",
+                                                    "Nogalamine",
+                                                    "O-methyl-L-amicetose",
+                                                    "Olivomose",
+                                                    "Olivomycose (L-chromose B)",
+                                                    "Rednose",
+                                                    "Other"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "Alkaloid": {
+                    "dependencies": {
+                        "biosyn_class": "Alkaloid"
+                    },
+                    "collapsed": true
+                },
+                "Other": {
+                    "dependencies": {
+                        "biosyn_class": "Other"
+                    },
+                    "collapsed": true
+                }
+            }
+        },
+        "comments": {
+            "type": "textarea",
+            "rows": 6,
+            "cols": 80
+        },
+        "embargo": {
+            "type": "checkbox",
+            "rightLabel": "Please embargo my gene cluster information, pending publication of the results."
+        }
+    }
+}

@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const PATHS = {
   app: path.resolve(__dirname, 'app'),
@@ -22,6 +23,9 @@ module.exports = {
       template: PATHS.app + "/index.html",
       favicon: PATHS.app + "/favicon.ico",
     }),
+    new CopyPlugin([
+      { from: 'static', to: PATHS.build + "/static" },
+    ]),
   ],
   module: {
     rules: [
