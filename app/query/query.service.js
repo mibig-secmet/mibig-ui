@@ -9,11 +9,16 @@ class Results{
 
   fromJSON(data) {
     this.total = data.total;
+    this.offset = data.offset;
+    this.paginate = data.paginate;
+
+    if (!data.clusters) {
+      return this;
+    }
+
     for(var i = 0; i < data.clusters.length; i++){
       this.clusters.push(new Cluster().fromJSON(data.clusters[i]));
     }
-    this.offset = data.offset;
-    this.paginate = data.paginate;
 
     // Make chainable
     return this;
@@ -47,7 +52,7 @@ class Cluster{
 }
 
 export default class QueryService{
-  constructor($http, $q){
+  constructor($http){
     this.$http = $http;
     this.search_pending = false;
     this.search_done = false;
