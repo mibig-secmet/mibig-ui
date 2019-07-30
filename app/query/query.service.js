@@ -70,6 +70,16 @@ export default class QueryService{
     });
   };
 
+  search(query) {
+    this.search_pending = true;
+    this.$http.post('/api/v1/search', {query: query}).then(results => {
+      this.results.fromJSON(results.data);
+      this.search_pending = false;
+      this.search_done = true;
+      this.ran_simple_search = false;
+    });
+  }
+
   reset() {
     this.results = new Results();
     this.search_done = false;

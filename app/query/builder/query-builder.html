@@ -18,11 +18,15 @@
       </div>
     </div>
   </div>
-  <as-query-term term="$ctrl.query.terms" categories="$ctrl.categories"></as-query-term>
+  <mibig-query-term term="$ctrl.query.terms"></mibig-query-term>
 </div>
 <div class="row">
   <div class="col-md-2">
-    <button ng-if="$ctrl.showSearch()" class="btn btn-primary btn-block" ng-click="$ctrl.search()" ng-disabled="!$ctrl.isValidSearch()">
+    <button class="btn btn-default btn-block" ng-click="$ctrl.loadExample()">
+      <i class="fa"></i>Load example search</button>
+  </div>
+  <div class="col-md-2 col-md-offset-8">
+    <button ng-if="$ctrl.showSearch()" class="btn btn-primary btn-block" ng-click="$ctrl.search()" ng-disabled="!$ctrl.validSearch()">
       <i class="fa fa-search"></i> Search
     </button>
     <button ng-if="!$ctrl.showSearch() && !$ctrl.bowser.safari" class="btn btn-primary btn-block" ng-click="$ctrl.exportFile()"
@@ -33,10 +37,5 @@
       download>
       <i class="fa fa-download"></i> Download
     </a>
-  </div>
-
-  <div class="col-md-2 col-md-offset-8">
-    <button class="btn btn-default btn-block" ng-click="$ctrl.loadComplexExample()">
-      <i class="fa"></i>Load example search</button>
   </div>
 </div>
