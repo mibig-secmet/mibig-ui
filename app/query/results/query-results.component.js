@@ -1,7 +1,8 @@
 class QueryResultsCtrl {
-  constructor() {
+  constructor($window) {
     this.reverseSort = false;
     this.orderByField = 'accession';
+    this.$window = $window;
   }
 
   $onInit() {
@@ -29,7 +30,13 @@ class QueryResultsCtrl {
     this.queryService.reset()
   };
 
+  showCluster(entry) {
+    this.$window.open('/go/' + entry.accession, '_blank');
+  }
+
 };
+
+QueryResultsCtrl.$inject = ["$window"];
 
 module.exports = {
   template: require('./query-results.html'),
