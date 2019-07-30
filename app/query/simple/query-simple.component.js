@@ -3,7 +3,7 @@ function querySimpleCtrl(){
   vm.search_string = '';
 
   vm.loadExample = () => {
-    vm.search_string = 'lanthipeptide Streptomyces';
+    vm.search_string = 'lanthipeptide';
   };
 
   vm.simpleSearch = () => {
