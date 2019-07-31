@@ -29,8 +29,12 @@
           <i ng-show="$ctrl.orderByField == 'accession'" class="fa" ng-class="$ctrl.searchIconClass()"></i>
         </th>
         <th class="results-header col-md-1" ng-click="$ctrl.changeSortOrder('completeness')">
-          MIBiG Info
+          Complete cluster
           <i ng-show="$ctrl.orderByField == 'completeness'" class="fa" ng-class="$ctrl.searchIconClass()"></i>
+        </th>
+        <th class="results-header col-md-1" ng-click="$ctrl.changeSortOrder('info')">
+          MIBiG Info
+          <i ng-show="$ctrl.orderByField == 'info'" class="fa" ng-class="$ctrl.searchIconClass()"></i>
         </th>
         <th class="results-header col-md-3" ng-click="$ctrl.changeSortOrder('product')">
           Main Product
@@ -50,6 +54,7 @@
       <tr class="cluster-list" ng-repeat="entry in $ctrl.s.results.clusters|orderBy:$ctrl.orderByField:$ctrl.reverseSort"
         ng-click="$ctrl.showCluster(entry)">
         <td>{{entry.accession}}</td>
+        <td><i class="fa" ng-class="entry.completenessIcon()" uib-tooltip="{{entry.complete}}"></i></td>
         <td><i class="fa" ng-class="{'fa-circle': !entry.minimal, 'fa-circle-o': entry.minimal}" uib-tooltip="{{entry.minimal ? 'incomplete entry' : 'complete entry'}}"></i></td>
         <td>{{entry.product}}</td>
         <td><div class="class-label" ng-repeat="tag in entry.tags" ng-class="tag.css_class">{{tag.name}}</div></td>

@@ -40,7 +40,8 @@ class Cluster{
 
   fromJSON(data) {
     this.accession = data.accession;
-    this.completeness = data.completeness;
+    this.complete = data.complete;
+    this.minimal = data.minimal;
     this.product = data.products.join(', ');
     data.classes.forEach((tag) => {
       this.tags.push(new Tag(tag.name, tag.css_class));
@@ -48,6 +49,17 @@ class Cluster{
     this.organism = data.organism;
     // Make chainable
     return this;
+  };
+
+  completenessIcon() {
+    switch(this.complete) {
+      case "complete":
+        return "fa-circle";
+      case "incomplete":
+        return "fa-circle-o";
+      default:
+        return "fa-question";
+    }
   };
 }
 
