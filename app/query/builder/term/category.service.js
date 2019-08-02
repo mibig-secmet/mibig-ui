@@ -3,6 +3,7 @@ export default class CategoryService{
 		this.categories = [
 			{val: '', desc: '--- Select a category ---'},
 			{val: 'acc', desc: 'MIBiG accession'},
+			{val: 'ncbi', desc: 'NCBI accession'},
 			{val: 'type', desc: 'BGC type',},
 			{val: 'compound', desc: 'Compound name',},
 			{val: 'minimal', desc: 'Entries with minimal annotations', category: 'Quality filters'},
