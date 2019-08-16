@@ -11,6 +11,9 @@ export default function routes($stateProvider) {
       records: ['StatsService', (StatsService) => {
         return StatsService.getRecords();
       }],
+      taxon_stats: ['StatsService', (StatsService) => {
+        return StatsService.taxonStats();
+      }],
     },
   });
 };

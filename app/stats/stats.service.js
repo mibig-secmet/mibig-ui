@@ -21,16 +21,27 @@ class Record {
   }
 }
 
+class TaxonStats {
+  constructor(genus, count) {
+    this.genus = genus;
+    this.count = count;
+  };
+}
+
 export default class StatsService{
   constructor($http){
     this.$http = $http;
     this.general_stats = new GeneralStats({total: "?", minimal: "?"});
     this.records = [];
+    this.taxon_stats = [];
 
     $http.get("/api/v1/stats").then((response) => {
       this.general_stats.reload(response.data.counts);
       response.data.clusters.forEach((cluster) => {
         this.records.push(new Record(cluster.type, cluster.count, cluster.description, cluster.css_class));
+      });
+      response.data.taxon_stats.forEach((stat) => {
+        this.taxon_stats.push(new TaxonStats(stat.genus, stat.count));
       });
     });
   };
@@ -41,6 +52,10 @@ export default class StatsService{
 
   getRecords() {
     return this.records;
+  }
+
+  taxonStats() {
+    return this.taxon_stats;
   }
 }
 
