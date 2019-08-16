@@ -20,16 +20,25 @@ class QueryBuilderCtrl{
       verbose: false,
       terms: {
         term_type: 'op',
-        operation: 'or',
+        operation: 'and',
         left: {
           term_type: 'expr',
           category: 'type',
           term: 'ripp',
         },
         right: {
-          term_type: 'expr',
-          category: 'compound',
-          term: 'kirromycin',
+          term_type: 'op',
+          operation: 'and',
+          left: {
+            term_type: 'expr',
+            category: 'completeness',
+            term: 'complete',
+          },
+          right: {
+            term_type: 'expr',
+            category: 'genus',
+            term: 'Streptomyces',
+          },
         },
       },
     };
