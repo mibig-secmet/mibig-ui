@@ -14,6 +14,7 @@ export default class CategoryService{
 			{val: 'order', desc: 'Order', category: 'Taxonomy'},
 			{val: 'class', desc: 'Class', category: 'Taxonomy'},
 			{val: 'phylum', desc: 'Phylum', category: 'Taxonomy'},
+			{val: 'kingdom', desc: 'Kingdom', category: 'Taxonomy'},
 			{val: 'superkingdom', desc: 'Superkingdom', category: 'Taxonomy'},
 		];
 	};
