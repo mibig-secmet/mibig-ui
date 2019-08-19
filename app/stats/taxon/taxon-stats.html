@@ -3,7 +3,7 @@
     <ul class="list-group">
       <li class="list-group-item col-md-6" ng-repeat="taxon in $ctrl.taxa">
         <span class="badge">{{taxon.count}}</span>
-        {{taxon.genus}}
+        <a ui-sref="query({'search_string': '[genus]' + taxon.genus})">{{taxon.genus}}</a>
       </li>
     </ul>
   </div>

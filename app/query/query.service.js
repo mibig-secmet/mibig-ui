@@ -73,6 +73,7 @@ export default class QueryService{
   };
 
   simpleSearch(search_string) {
+    this.reset()
     this.search_pending = true;
     this.$http.post('/api/v1/search', {search_string: search_string}).then(results => {
       this.results.fromJSON(results.data);
@@ -83,6 +84,7 @@ export default class QueryService{
   };
 
   search(query) {
+    this.reset()
     this.search_pending = true;
     this.$http.post('/api/v1/search', {query: query}).then(results => {
       this.results.fromJSON(results.data);

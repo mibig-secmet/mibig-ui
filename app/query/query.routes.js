@@ -7,5 +7,8 @@ export default function routes($stateProvider) {
       resolve: {
         queryService: ['QueryService', (QueryService) => { return QueryService; }],
       },
+      params: {
+        search_string: null,
+      },
     });
 };

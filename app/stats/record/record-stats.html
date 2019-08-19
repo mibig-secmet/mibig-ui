@@ -3,7 +3,7 @@
     <ul class="list-group">
       <li class="list-group-item col-md-6" ng-repeat="record in $ctrl.records">
         <span class="badge" ng-class="record.css_class">{{record.count}}</span>
-        {{record.description}}
+        <a ui-sref="query({'search_string': '[type]' + record.type})">{{record.description}}</a>
       </li>
     </ul>
   </div>
