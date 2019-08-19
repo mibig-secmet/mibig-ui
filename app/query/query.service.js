@@ -80,6 +80,10 @@ export default class QueryService{
       this.search_pending = false;
       this.search_done = true;
       this.ran_simple_search = true;
+    }).catch(error => {
+      this.search_pending = false;
+      this.search_done = true;
+      this.ran_simple_search = true;
     });
   };
 
@@ -88,6 +92,10 @@ export default class QueryService{
     this.search_pending = true;
     this.$http.post('/api/v1/search', {query: query}).then(results => {
       this.results.fromJSON(results.data);
+      this.search_pending = false;
+      this.search_done = true;
+      this.ran_simple_search = false;
+    }).catch(error => {
       this.search_pending = false;
       this.search_done = true;
       this.ran_simple_search = false;
