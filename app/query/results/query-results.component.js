@@ -7,7 +7,6 @@ class QueryResultsCtrl {
 
   $onInit() {
     this.s = this.queryService;
-    this.results = this.queryService.results;
   }
 
 
