@@ -1,4 +1,4 @@
-class Entry{
+class Entry {
   constructor() {
     this.tags = [];
   };
@@ -7,7 +7,11 @@ class Entry{
     this.accession = data.accession;
     this.complete = data.complete;
     this.minimal = data.minimal;
-    this.product = data.products.join(', ');
+    let products = [];
+    data.products.forEach((product) => {
+      products.push(product.name);
+    });
+    this.product = products.join(", ");
     data.classes.forEach((tag) => {
       this.tags.push(new Tag(tag.name, tag.css_class));
     });
@@ -17,7 +21,7 @@ class Entry{
   };
 
   completenessIcon() {
-    switch(this.complete) {
+    switch (this.complete) {
       case "complete":
         return "fa-circle";
       case "incomplete":
@@ -28,15 +32,15 @@ class Entry{
   };
 }
 
-class Tag{
+class Tag {
   constructor(name, css_class) {
     this.name = name;
     this.css_class = css_class;
   };
 }
 
-export default class RepositoryService{
-  constructor($http){
+export default class RepositoryService {
+  constructor($http) {
     this.$http = $http;
     this.entries = [];
 
