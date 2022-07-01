@@ -1,5 +1,5 @@
-class Results{
-  constructor(){
+class Results {
+  constructor() {
     this.total = 0;
     this.clusters = [];
     this.offset = 0;
@@ -16,7 +16,7 @@ class Results{
       return this;
     }
 
-    for(var i = 0; i < data.clusters.length; i++){
+    for (var i = 0; i < data.clusters.length; i++) {
       this.clusters.push(new Cluster().fromJSON(data.clusters[i]));
     }
 
@@ -26,14 +26,14 @@ class Results{
 }
 
 
-class Tag{
+class Tag {
   constructor(name, css_class) {
     this.name = name;
     this.css_class = css_class;
   };
 }
 
-class Cluster{
+class Cluster {
   constructor() {
     this.tags = [];
   };
@@ -42,7 +42,11 @@ class Cluster{
     this.accession = data.accession;
     this.complete = data.complete;
     this.minimal = data.minimal;
-    this.product = data.products.join(', ');
+    let products = [];
+    data.products.forEach((product) => {
+      products.push(product.name);
+    });
+    this.product = products.join(", ");
     data.classes.forEach((tag) => {
       this.tags.push(new Tag(tag.name, tag.css_class));
     });
@@ -52,7 +56,7 @@ class Cluster{
   };
 
   completenessIcon() {
-    switch(this.complete) {
+    switch (this.complete) {
       case "complete":
         return "fa-circle";
       case "incomplete":
@@ -63,8 +67,8 @@ class Cluster{
   };
 }
 
-export default class QueryService{
-  constructor($http){
+export default class QueryService {
+  constructor($http) {
     this.$http = $http;
     this.search_pending = false;
     this.search_done = false;
@@ -75,7 +79,7 @@ export default class QueryService{
   simpleSearch(search_string) {
     this.reset()
     this.search_pending = true;
-    this.$http.post('/api/v1/search', {search_string: search_string}).then(results => {
+    this.$http.post('/api/v1/search', { search_string: search_string }).then(results => {
       this.results.fromJSON(results.data);
       this.search_pending = false;
       this.search_done = true;
@@ -90,7 +94,7 @@ export default class QueryService{
   search(query) {
     this.reset()
     this.search_pending = true;
-    this.$http.post('/api/v1/search', {query: query}).then(results => {
+    this.$http.post('/api/v1/search', { query: query }).then(results => {
       this.results.fromJSON(results.data);
       this.search_pending = false;
       this.search_done = true;
