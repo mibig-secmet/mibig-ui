@@ -3,6 +3,8 @@ class SubmitCtrl {
     this.$http = $http;
 
     this.done = false;
+    this.has_error = false;
+    this.error = null;
 
     this.compounds = [
       new Compound(),
@@ -21,19 +23,33 @@ class SubmitCtrl {
     let submission = {
       name: this.name,
       email: this.email,
-      compounds: this.compounds.filter(compound => compound.name).map(compound => compound.name),
-      loci: this.loci.filter(locus => locus.genbank_accession),
+      compounds: this.compounds.filter(compound => compound.isValid()).map(compound => compound.name),
+      loci: this.loci.filter(locus => locus.isValid()),
     };
     console.log(submission);
     this.$http.post("/api/v1/submit", submission).then(result => {
       this.done = true;
+    }).catch(err => {
+      this.has_error = true;
+      this.error = err.data;
+      console.log(err);
     });
+  }
+  isValid() {
+    if (!this.name) return false;
+    if (!this.email) return false;
+    if (this.compounds.filter(compound => compound.isValid()).length == 0) return false;
+    if (this.loci.filter(locus => locus.isValid()).length == 0) return false;
+    return true;
   }
 }
 
 SubmitCtrl.$inject = ['$http'];
 
 class Compound {
+  isValid() {
+    return this.name && this.name !== "";
+  }
 }
 
 class Locus {
@@ -42,6 +58,11 @@ class Locus {
     this.start = start;
     this.end = end;
   }
+
+  isValid() {
+    return this.genbank_accession && this.genbank_accession !== "";
+  }
+
 }
 
 module.exports = {
@@ -50,4 +71,3 @@ module.exports = {
   bindings: {
   }
 };
-
