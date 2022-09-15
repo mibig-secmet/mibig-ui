@@ -1,9 +1,9 @@
 <div class="row" id="stats-taxon-count">
-    <h3>Entries <small>by genus</small></h3>
+    <h3>Entries <small>by phylum</small></h3>
     <ul class="list-group">
       <li class="list-group-item col-md-6" ng-repeat="taxon in $ctrl.taxa">
         <span class="badge">{{taxon.count}}</span>
-        <a ui-sref="query({'search_string': '[genus]' + taxon.genus})">{{taxon.genus}}</a>
+        <a ui-sref="query({'search_string': '[phylum]' + taxon.phylum})">{{taxon.phylum}}</a>
       </li>
     </ul>
   </div>
