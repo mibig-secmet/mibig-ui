@@ -5,7 +5,8 @@
       <tr>
         <th>Accession</th>
         <th>Cluster complete</th>
-        <th>Annotation complete</th>
+        <th>Non-minimal</th>
+        <th>Status</th>
         <th>Main product</th>
         <th>Biosynthetic class</th>
         <th>Organism</th>
@@ -15,7 +16,8 @@
       <tr class="cluster-list" ng-repeat="entry in $ctrl.entries | filter: $ctrl.filterTerm | limitTo: $ctrl.limit" in-view="$ctrl.loadMore($last, $inview)" ng-click="$ctrl.showEntry(entry)">
         <td>{{entry.accession}}</td>
         <td><i class="fa" ng-class="entry.completenessIcon()" uib-tooltip="{{entry.complete}}"></i></td>
-        <td><i class="fa" ng-class="{'fa-circle': !entry.minimal, 'fa-circle-o': entry.minimal}" uib-tooltip="{{entry.minimal ? 'incomplete entry' : 'complete entry'}}"></i></td>
+        <td><i class="fa" ng-class="{'fa-circle': !entry.minimal, 'fa-circle-o': entry.minimal}" uib-tooltip="{{entry.minimal ? 'minimal entry' : 'non-minimal entry'}}"></i></td>
+        <td><i class="fa" ng-class="entry.statusIcon()" uib-tooltip="{{entry.status}}"></i></td>
         <td>{{entry.product}}</td>
         <td><div class="class-label" ng-repeat="tag in entry.tags" ng-class="tag.css_class">{{tag.name}}</div></td>
         <td>{{entry.organism}}</td>

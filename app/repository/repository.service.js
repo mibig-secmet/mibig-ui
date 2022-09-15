@@ -7,6 +7,7 @@ class Entry {
     this.accession = data.accession;
     this.complete = data.complete;
     this.minimal = data.minimal;
+    this.status = data.status;
     let products = [];
     data.products.forEach((product) => {
       products.push(product.name);
@@ -28,6 +29,17 @@ class Entry {
         return "fa-circle-o";
       default:
         return "fa-question";
+    }
+  };
+
+  statusIcon() {
+    switch (this.status) {
+      case "active":
+        return "fa-circle";
+      case "retired":
+        return "fa-circle-o";
+      default:
+        return "fa-clock";
     }
   };
 }
