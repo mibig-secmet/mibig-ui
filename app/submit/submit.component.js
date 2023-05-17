@@ -16,9 +16,6 @@ class SubmitCtrl {
   addCompound() {
     this.compounds.push(new Compound());
   }
-  addLocus() {
-    this.loci.push(new Locus());
-  }
   submit() {
     let submission = {
       name: this.name,
